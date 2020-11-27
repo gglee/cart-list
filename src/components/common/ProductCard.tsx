@@ -7,11 +7,13 @@ export type product = {
   coverImage: string;
   price: number;
   score: number;
+  keep: boolean;
 };
 
 export type ProductCardPorps = {
   product: product;
 };
+
 function ProductCard({ product }: ProductCardPorps) {
   return (
     <Black>
@@ -27,7 +29,7 @@ function ProductCard({ product }: ProductCardPorps) {
 }
 
 const Black = styled.div`
-  width: 20rem;
+  width: 27rem;
   margin: 1rem;
   overflow: hidden;
   display: flex;
@@ -35,11 +37,6 @@ const Black = styled.div`
   background: white;
   border-radius: 4px;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.04);
-  transition: 0.25s box-shadow ease-in, 0.25s transform ease-in;
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 20px 0 rgba(0, 0, 0, 0.08);
-  }
 `;
 
 const Thumbnail = styled.div`

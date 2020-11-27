@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import HomeReponsive from '../home/HomeReponsive';
 
 export type HeaderProps = {};
 
@@ -21,7 +22,7 @@ const Block = styled.div`
   height: 4rem;
 `;
 
-const Inner = styled.div`
+const Inner = styled(HomeReponsive)`
   height: 100%;
   display: flex;
   align-items: center;
