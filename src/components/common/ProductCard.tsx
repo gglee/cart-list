@@ -1,14 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-export type product = {
-  id: string;
-  title: string;
-  coverImage: string;
-  price: number;
-  score: number;
-  keep: boolean;
-};
+import { product } from '../../modules/product';
 
 export type ProductCardPorps = {
   product: product;
