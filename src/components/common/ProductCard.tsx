@@ -15,6 +15,7 @@ function ProductCard({ product }: ProductCardPorps) {
       <Content>
         <h4>{product.title}</h4>
         <p>{`가격: ${product.price}`}</p>
+        <button>{`장바구니 담기 >`}</button>
       </Content>
     </Black>
   );
@@ -70,6 +71,18 @@ const Content = styled.div`
     line-height: 1.5;
     color: black;
     margin-bottom: 1.5rem;
+  }
+  button {
+    background: #3360ff;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 0.25rem;
+    word-break: keep-all;
+    padding: 0.5rem;
+    cursor: pointer;
   }
 `;
 

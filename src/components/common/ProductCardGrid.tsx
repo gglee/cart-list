@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import ProductCard, { product } from './ProductCard';
+import ProductCard from './ProductCard';
+import { product } from '../../modules/product';
 
 export type ProductCardGridProps = {
   products: product[];
