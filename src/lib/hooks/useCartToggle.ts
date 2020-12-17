@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules/index';
-import productSlice, { product } from '../../modules/product';
+import productSlice, { Product } from '../../modules/product';
 import cartSlice from '../../modules/cart';
 
 export default function useCartToggle() {
@@ -9,7 +9,7 @@ export default function useCartToggle() {
   const productList = useSelector((state: RootState) => state.cart.list);
 
   const onCartToggle = useCallback(
-    async (product: product) => {
+    async (product: Product) => {
       const { keep } = product;
       if (keep === undefined || !keep) {
         if (productList && productList.length >= 3) {

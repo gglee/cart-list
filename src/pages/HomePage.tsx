@@ -5,6 +5,7 @@ import HomeLayout from '../components/home/HomeLayout';
 import HomeReponsive from '../components/home/HomeReponsive';
 import { Route } from 'react-router-dom';
 import ProductsPage from './ProductsPage';
+import CartPage from './CartPage';
 
 export type HomePageProps = {};
 
@@ -15,7 +16,10 @@ function HomePage(props: HomePageProps) {
       <HomeReponsive>
         <HomeLayout
           main={
-            <Route path={['/', '/products']} component={ProductsPage} exact />
+            <>
+              <Route path={['/', '/products']} component={ProductsPage} exact />
+              <Route path={['/cart']} component={CartPage} />
+            </>
           }
         />
       </HomeReponsive>

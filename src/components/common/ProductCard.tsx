@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { product } from '../../modules/product';
+import { Product } from '../../modules/product';
 import useCartToggle from '../../lib/hooks/useCartToggle';
 
 export type ProductCardPorps = {
-  product: product;
+  product: Product;
 };
 
 type ContentType = {

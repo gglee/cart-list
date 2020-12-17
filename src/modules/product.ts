@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type product = {
+export type Product = {
   id: string;
   title: string;
   coverImage: string;
@@ -11,9 +11,9 @@ export type product = {
 };
 
 export interface ProductState {
-  products: product[][] | null;
+  products: Product[][] | null;
   recent: {
-    list: product[] | null;
+    list: Product[] | null;
   };
 }
 
@@ -28,16 +28,16 @@ const products = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    setProducts(state, action: PayloadAction<product[][]>) {
+    setProducts(state, action: PayloadAction<Product[][]>) {
       state.products = action.payload;
     },
-    getList(state, action: PayloadAction<product[]>) {
+    getList(state, action: PayloadAction<Product[]>) {
       state.recent.list = action.payload;
     },
-    fetchMore(state, action: PayloadAction<product[]>) {
+    fetchMore(state, action: PayloadAction<Product[]>) {
       state.recent.list = action.payload;
     },
-    cartToggle(state, action: PayloadAction<product>) {
+    cartToggle(state, action: PayloadAction<Product>) {
       state.recent.list?.forEach((product) => {
         if (product.id === action.payload.id) {
           product.keep = !product.keep;

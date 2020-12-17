@@ -9,7 +9,7 @@ function Header(props: HeaderProps) {
   return (
     <Block>
       <Inner>
-        <MenuButton to="/">상품목록</MenuButton>
+        <MenuButton to="/products">상품목록</MenuButton>
         <Right>
           <MenuButton to="/cart">장바구니</MenuButton>
         </Right>
