@@ -1,21 +1,29 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { product } from '../../modules/product';
+import useCartToggle from '../../lib/hooks/useCartToggle';
 
 export type ProductCardPorps = {
   product: product;
 };
 
+type ContentType = {
+  active?: boolean;
+};
+
 function ProductCard({ product }: ProductCardPorps) {
+  const { onCartToggle } = useCartToggle();
   return (
     <Black>
       <Thumbnail>
         <img src={product.coverImage} alt="thumbnail" />
       </Thumbnail>
-      <Content>
+      <Content active={product.keep}>
         <h4>{product.title}</h4>
         <p>{`가격: ${product.price}`}</p>
-        <button>{`장바구니 담기 >`}</button>
+        <button type="button" onClick={() => onCartToggle(product)}>
+          {product.keep ? `장바구니 빼기 >` : `장바구니 담기 >`}
+        </button>
       </Content>
     </Black>
   );
@@ -34,7 +42,7 @@ const Black = styled.div`
 
 const Thumbnail = styled.div`
   width: 100%;
-  padding-top: 75%;
+  padding-top: 120%;
   position: relative;
   img {
     position: absolute;
@@ -47,7 +55,7 @@ const Thumbnail = styled.div`
   }
 `;
 
-const Content = styled.div`
+const Content = styled.div<ContentType>`
   padding: 1rem;
   display: flex;
   flex: 1;
@@ -83,6 +91,20 @@ const Content = styled.div`
     word-break: keep-all;
     padding: 0.5rem;
     cursor: pointer;
+    transition: 0.25s color ease-in-out;
+    ${(props) =>
+      props.active &&
+      css`
+        color: #858a8d;
+        background: #f9f9f9;
+      `}
+    &:hover,
+    &:focus {
+    }
+    &:active {
+      color: #858a8d;
+      background: #f9f9f9;
+    }
   }
 `;
 

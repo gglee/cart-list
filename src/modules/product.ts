@@ -14,8 +14,6 @@ export interface ProductState {
   products: product[][] | null;
   recent: {
     list: product[] | null;
-    prefetched: product[] | null;
-    end: boolean;
   };
 }
 
@@ -23,8 +21,6 @@ const initialState: ProductState = {
   products: null,
   recent: {
     list: null,
-    prefetched: null,
-    end: false,
   },
 };
 
@@ -40,6 +36,13 @@ const products = createSlice({
     },
     fetchMore(state, action: PayloadAction<product[]>) {
       state.recent.list = action.payload;
+    },
+    cartToggle(state, action: PayloadAction<product>) {
+      state.recent.list?.forEach((product) => {
+        if (product.id === action.payload.id) {
+          product.keep = !product.keep;
+        }
+      });
     },
   },
 });
