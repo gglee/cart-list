@@ -44,6 +44,15 @@ const products = createSlice({
         }
       });
     },
+    cartItemRemove(state, action: PayloadAction<string>) {
+      if (state.recent.list && state.recent.list.length !== 0) {
+        state.recent.list.forEach((product) => {
+          if (product.id === action.payload) {
+            product.keep = false;
+          }
+        });
+      }
+    },
   },
 });
 

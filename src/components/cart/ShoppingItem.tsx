@@ -6,6 +6,7 @@ import { MdCheckBoxOutlineBlank } from 'react-icons/md';
 import { BiChevronUp } from 'react-icons/bi';
 import { BiChevronDown } from 'react-icons/bi';
 import useCountingItem from './hooks/useCountingItem';
+import useShoppingCart from './hooks/useShoppingCart';
 
 export type ShoppingItemProps = {
   shoppingItem: ShoppingItemState;
@@ -13,6 +14,8 @@ export type ShoppingItemProps = {
 
 function ShoppingItem({ shoppingItem }: ShoppingItemProps) {
   const { onIncrease, onDecrease } = useCountingItem();
+  const { onRemove } = useShoppingCart();
+
   return (
     <Block>
       <Left>
@@ -25,16 +28,32 @@ function ShoppingItem({ shoppingItem }: ShoppingItemProps) {
         <Information>
           <h3>{shoppingItem.title}</h3>
           <div className="counting">
-            <div className="count">{`수량: ${shoppingItem.count}`}</div>
-            <div className="buttons">
-              <button onClick={() => onIncrease(shoppingItem.id)}>
-                <BiChevronUp />
-              </button>
+            <div className="left">
+              <div className="count">
+                <label>수량:</label>
+                <span>{shoppingItem.count}</span>
+              </div>
+              <div className="buttons">
+                <button
+                  disabled={shoppingItem.count === 100}
+                  onClick={() => onIncrease(shoppingItem.id)}
+                >
+                  <BiChevronUp />
+                </button>
+                <button
+                  disabled={shoppingItem.count === 1}
+                  onClick={() => onDecrease(shoppingItem.id)}
+                >
+                  <BiChevronDown />
+                </button>
+              </div>
+            </div>
+            <div className="right">
               <button
-                disabled={shoppingItem.count === 1}
-                onClick={() => onDecrease(shoppingItem.id)}
+                className="remove"
+                onClick={() => onRemove(shoppingItem.id)}
               >
-                <BiChevronDown />
+                삭제
               </button>
             </div>
           </div>
@@ -87,39 +106,57 @@ const Information = styled.div`
   h3 {
     margin: 0;
   }
+  button {
+    outline: none;
+    border: none;
+    word-break: keep-all;
+    background: #f0f2f2;
+    cursor: pointer;
+  }
   .counting {
     display: flex;
-    justify-content: space-around;
-    max-width: 6.875rem;
     margin-top: 1rem;
-    padding: 0.25rem;
-    border: 1px solid #d5d9d9;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 5px 0 rgba(213, 217, 217, 0.5);
-    .count {
+    align-items: center;
+    .left {
       display: flex;
-      align-items: center;
-      padding: 0.5rem;
-    }
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      margin-left: 0.25rem;
-      button {
-        outline: none;
-        border: none;
-        word-break: keep-all;
-        background: #f0f2f2;
-        cursor: pointer;
-        &:active {
-          background: #d6d9d9;
-        }
-        &:disabled {
-          cursor: default;
+      justify-content: space-around;
+      max-width: 6.875rem;
+      padding: 0.25rem;
+      border: 1px solid #d5d9d9;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 5px 0 rgba(213, 217, 217, 0.5);
+      .count {
+        display: flex;
+        padding: 0.5rem;
+        width: 4.4375rem;
+        span {
+          margin-left: 0.125rem;
         }
       }
-      button + button {
-        border-top: 1px solid #cccccc;
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0.25rem;
+        button {
+          &:active {
+            background: #d6d9d9;
+          }
+          &:disabled {
+            cursor: default;
+          }
+        }
+        button + button {
+          border-top: 1px solid #cccccc;
+        }
+      }
+    }
+    .right {
+      margin-left: 1rem;
+      .remove {
+        border: 1px solid #d5d9d9;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 5px 0 rgba(213, 217, 217, 0.5);
+        padding: 0.5rem;
       }
     }
   }
