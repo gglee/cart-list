@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../modules/index';
-import productSlice, { Product } from '../../modules/product';
-import cartSlice from '../../modules/cart';
+import { RootState } from '../../../modules/index';
+import productSlice, { Product } from '../../../modules/product';
+import cartSlice from '../../../modules/cart';
 
 export default function useCartToggle() {
   const dispatch = useDispatch();
@@ -16,9 +16,11 @@ export default function useCartToggle() {
           alert('장바구니에는 최대 3개의 상품이 담길 수 있습니다');
           return;
         }
-        await dispatch(cartSlice.actions.addProduct(product));
+        await dispatch(
+          cartSlice.actions.addItem({ ...product, count: 1, checked: true }),
+        );
       } else {
-        await dispatch(cartSlice.actions.removeProduct(product));
+        await dispatch(cartSlice.actions.removeItem({ id: product.id }));
       }
 
       await dispatch(productSlice.actions.cartToggle(product));

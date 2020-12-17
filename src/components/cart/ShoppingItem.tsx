@@ -5,12 +5,14 @@ import { MdCheckBox } from 'react-icons/md';
 import { MdCheckBoxOutlineBlank } from 'react-icons/md';
 import { BiChevronUp } from 'react-icons/bi';
 import { BiChevronDown } from 'react-icons/bi';
+import useCountingItem from './hooks/useCountingItem';
 
 export type ShoppingItemProps = {
   shoppingItem: ShoppingItemState;
 };
 
 function ShoppingItem({ shoppingItem }: ShoppingItemProps) {
+  const { onIncrease, onDecrease } = useCountingItem();
   return (
     <Block>
       <Left>
@@ -25,10 +27,13 @@ function ShoppingItem({ shoppingItem }: ShoppingItemProps) {
           <div className="counting">
             <div className="count">{`수량: ${shoppingItem.count}`}</div>
             <div className="buttons">
-              <button>
+              <button onClick={() => onIncrease(shoppingItem.id)}>
                 <BiChevronUp />
               </button>
-              <button>
+              <button
+                disabled={shoppingItem.count === 1}
+                onClick={() => onDecrease(shoppingItem.id)}
+              >
                 <BiChevronDown />
               </button>
             </div>
@@ -108,6 +113,9 @@ const Information = styled.div`
         cursor: pointer;
         &:active {
           background: #d6d9d9;
+        }
+        &:disabled {
+          cursor: default;
         }
       }
       button + button {

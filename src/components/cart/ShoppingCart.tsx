@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ShoppingItemList from './ShoppingItemList';
-import useShoppingCart from '../../pages/hooks/useShoppingCart';
+import useShoppingCart from './hooks/useShoppingCart';
 
 export type ShoppingCartProps = {};
 

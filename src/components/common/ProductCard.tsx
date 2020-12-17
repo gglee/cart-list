@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Product } from '../../modules/product';
-import useCartToggle from '../../lib/hooks/useCartToggle';
+import useCartToggle from './hooks/useCartToggle';
 
 export type ProductCardPorps = {
   product: Product;
