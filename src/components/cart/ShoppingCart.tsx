@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ShoppingItemList from './ShoppingItemList';
+import Counter from './Counter';
 import useShoppingCart from './hooks/useShoppingCart';
 
 export type ShoppingCartProps = {};
@@ -10,21 +11,23 @@ function ShoppingCart() {
 
   return (
     <Block>
-      <header>
+      <div className="head">
         <h2>장바구니</h2>
         <p>가격</p>
-      </header>
+      </div>
       <ShoppingItemList list={list} />
+      <Counter />
     </Block>
   );
 }
 
 const Block = styled.div`
-  header {
+  .head {
     border-bottom: 1px solid #0f1111;
     p {
       text-align: right;
-      margin: 0;
+      margin-bottom: 0.25rem;
+      margin-top: 0;
     }
   }
 `;

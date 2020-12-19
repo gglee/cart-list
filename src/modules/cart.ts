@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product } from './product';
 
+export type subTotal = {
+  count: number;
+  price: number;
+};
+
 export interface ShoppingItemState extends Product {
   count: number;
   checked: boolean;
@@ -8,16 +13,28 @@ export interface ShoppingItemState extends Product {
 
 export interface CartState {
   list: ShoppingItemState[];
+  subTotal: subTotal;
 }
 
 const initialState: CartState = {
   list: [],
+  subTotal: {
+    count: 0,
+    price: 0,
+  },
 };
 
 const cart = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    checkedToggle(state, action: PayloadAction<string>) {
+      state.list.forEach((item) => {
+        if (item.id === action.payload) {
+          item.checked = !item.checked;
+        }
+      });
+    },
     addItem(state, action: PayloadAction<ShoppingItemState>) {
       state.list.push(action.payload);
     },
@@ -39,6 +56,10 @@ const cart = createSlice({
           item.count -= 1;
         }
       });
+    },
+    setSubTotal(state, action: PayloadAction<subTotal>) {
+      state.subTotal.price = action.payload.price;
+      state.subTotal.count = action.payload.count;
     },
   },
 });

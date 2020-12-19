@@ -14,12 +14,12 @@ export type ShoppingItemProps = {
 
 function ShoppingItem({ shoppingItem }: ShoppingItemProps) {
   const { onIncrease, onDecrease } = useCountingItem();
-  const { onRemove } = useShoppingCart();
+  const { onRemove, onToggle } = useShoppingCart();
 
   return (
     <Block>
       <Left>
-        <CheckBox>
+        <CheckBox onClick={() => onToggle(shoppingItem.id)}>
           {shoppingItem.checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
         </CheckBox>
         <Thumbnail>
@@ -55,6 +55,8 @@ function ShoppingItem({ shoppingItem }: ShoppingItemProps) {
               >
                 삭제
               </button>
+              {shoppingItem.availableCoupon !== undefined &&
+                !shoppingItem.availableCoupon && <span>쿠폰 사용 불가능</span>}
             </div>
           </div>
         </Information>
@@ -157,6 +159,11 @@ const Information = styled.div`
         border-radius: 0.5rem;
         box-shadow: 0 2px 5px 0 rgba(213, 217, 217, 0.5);
         padding: 0.5rem;
+      }
+      span {
+        font-size: 0.875rem;
+        color: #eb5757;
+        margin-left: 1rem;
       }
     }
   }
