@@ -12,7 +12,7 @@ function ShoppingItemList({ list }: ShoppingItemListProps) {
     <Block>
       {list.length === 0 && (
         <Empty>
-          <h2>장바구니에 상품이 없습니다.</h2>
+          <h2>상품이 없습니다.</h2>
         </Empty>
       )}
       {list.map((item) => (

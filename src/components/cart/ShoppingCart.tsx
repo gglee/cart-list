@@ -13,7 +13,7 @@ function ShoppingCart() {
     <Block>
       <div className="head">
         <h2>장바구니</h2>
-        <p>가격</p>
+        {list.length !== 0 && <p>가격</p>}
       </div>
       <ShoppingItemList list={list} />
       <Counter />

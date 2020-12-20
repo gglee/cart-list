@@ -12,13 +12,13 @@ export default function useUsableProducts() {
   const [isFinished, setIsFinished] = useState(false);
   const cursor = useRef(1);
 
-  const chunks = (array: Product[], size: number) => {
+  const chunks = useCallback((array: Product[], size: number) => {
     let results = [];
     while (array.length) {
       results.push(array.splice(0, size));
     }
     return results;
-  };
+  }, []);
 
   useEffect(() => {
     const sortScoreOrder = (a: Product, b: Product) => b.score - a.score;

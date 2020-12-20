@@ -129,7 +129,8 @@ const Information = styled.div`
       box-shadow: 0 2px 5px 0 rgba(213, 217, 217, 0.5);
       .count {
         display: flex;
-        padding: 0.5rem;
+        align-items: center;
+        justify-content: center;
         width: 4.4375rem;
         span {
           margin-left: 0.125rem;

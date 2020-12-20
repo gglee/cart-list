@@ -4,6 +4,8 @@ import { Product } from './product';
 export type subTotal = {
   count: number;
   price: number;
+  discountable: number;
+  noDiscount: number;
 };
 
 export interface ShoppingItemState extends Product {
@@ -21,6 +23,8 @@ const initialState: CartState = {
   subTotal: {
     count: 0,
     price: 0,
+    discountable: 0,
+    noDiscount: 0,
   },
 };
 
@@ -60,6 +64,8 @@ const cart = createSlice({
     setSubTotal(state, action: PayloadAction<subTotal>) {
       state.subTotal.price = action.payload.price;
       state.subTotal.count = action.payload.count;
+      state.subTotal.discountable = action.payload.discountable;
+      state.subTotal.noDiscount = action.payload.noDiscount;
     },
   },
 });
