@@ -20,7 +20,7 @@ function ProductCard({ product }: ProductCardPorps) {
       </Thumbnail>
       <Content active={product.keep}>
         <h4>{product.title}</h4>
-        <p>{`가격: ${product.price}`}</p>
+        <p>{`가격: ${product.price.toLocaleString()}`}</p>
         <button type="button" onClick={() => onCartToggle(product)}>
           {product.keep ? `장바구니 빼기 >` : `장바구니 담기 >`}
         </button>

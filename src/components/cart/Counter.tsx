@@ -26,23 +26,23 @@ function Counter(props: CounterProps) {
     <Block>
       <SubTotal>
         <span>{`소계(${subTotal.count}개 품목): `}</span>
-        <span>{subTotal.price}</span>
+        <span>{subTotal.price.toLocaleString()}</span>
       </SubTotal>
       <Payment>
         <div className="info">
           <h4>최종 결제 금액</h4>
           <div className="total">
             <span>총 상품금액</span>
-            <span className="price">{`${subTotal.price}원 - 할인금액`}</span>
+            <span className="price">{`${subTotal.price.toLocaleString()}원 - 할인금액`}</span>
             <SelectedCupon cupon={current} onClick={toggleCuponMenu} />
             <CuponMenu
               visible={cuponMenu}
               menu={cupons}
               onClose={onOutsideClick}
             />
-            <span className="price">{` ${discount}원 =`}</span>
+            <span className="price">{` ${discount.toLocaleString()}원 =`}</span>
             <span className="final-price">
-              {finalPrice}
+              {finalPrice.toLocaleString()}
               <span>원</span>
             </span>
           </div>

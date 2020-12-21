@@ -62,7 +62,7 @@ function ShoppingItem({ shoppingItem }: ShoppingItemProps) {
         </Information>
       </Left>
       <Right>
-        <Price>{`${shoppingItem.price}원`}</Price>
+        <Price>{`${shoppingItem.price.toLocaleString()}원`}</Price>
       </Right>
     </Block>
   );
